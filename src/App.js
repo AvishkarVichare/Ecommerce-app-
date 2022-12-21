@@ -16,7 +16,11 @@ const App = () => {
       <Routes>
 
         <Route exact path='/' element={<ProductsPage />} />
-        <Route exact path='/p/:productname' element={<ProductMain />} />
+        <Route exact path="/categories/electronics" element={<ProductsPage  />} />
+        <Route exact path="/categories/jewelery" element={<ProductsPage  />} />
+        <Route exact path="/categories/men's clothing" element={<ProductsPage  />} />
+        <Route exact path="/categories/women's clothing" element={<ProductsPage  />} />
+        <Route exact path="/p/:productname" element={<ProductMain />} />
 
       </Routes>
       

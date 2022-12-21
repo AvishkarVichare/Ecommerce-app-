@@ -8,13 +8,17 @@ const ProductState = (props)=>{
 
     const getAllProducts = async()=>{
         const res = await axios.get('https://fakestoreapi.com/products');
-        // const res = await axios.get('https://fakestoreapi.com/products/category/jewelery');
         // console.log(res);
         setProducts(res.data);
     }
 
+    const getProductsByCategory = async()=>{
+        const res = await axios.get('https://fakestoreapi.com/products/category/jewelery');
+        setProducts(res.data);
+    }
+
     return(
-        <ProductContext.Provider value={{getAllProducts, products}}>
+        <ProductContext.Provider value={{getAllProducts, products, getProductsByCategory}}>
             {
                 props.children
             }

@@ -1,7 +1,31 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import ProductsDiplay from './ProductsDiplay'
+import {useLocation} from 'react-router-dom'
+import ProductContext from '../../context/productContext/ProductContext'
 
 const ProductsPage = () => {
+
+  const location = useLocation();
+
+  const productContext = useContext(ProductContext);
+  const {getAllProducts, products, getProductsByCategory} = productContext;
+  
+
+  useEffect(()=>{
+  
+      if(location.pathname.includes("electronics"))
+        getProductsByCategory('electronics')
+      else if(location.pathname.includes("jewelery"))
+        getProductsByCategory('jewelery')
+      else if(location.pathname.includes("men's clothing"))
+        getProductsByCategory("men's clothing")
+      else if(location.pathname.includes("women's clothing"))
+        getProductsByCategory( "women's clothing")
+      else 
+        getAllProducts()
+
+  },[location.pathname])
+
   return (
     <section className=' '>
         <div className='bg-bg_main_color h-full  relative z-[1] pt-12'>
@@ -29,7 +53,7 @@ const ProductsPage = () => {
 
 
           {/* products list wi be diplayed below */}
-          <ProductsDiplay />
+          <ProductsDiplay products={products} />
         </div>
     </section>
   )
