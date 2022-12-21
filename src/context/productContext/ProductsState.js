@@ -6,15 +6,19 @@ const ProductState = (props)=>{
 
     const [products, setProducts] = useState([]);
     const [product, setProduct] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
 
     const getAllProducts = async()=>{
         const res = await axios.get('https://fakestoreapi.com/products');
         // console.log(res);
+        setIsLoading(false)
         setProducts(res.data);
     }
 
     const getProductsByCategory = async(categorie)=>{
         const res = await axios.get(`https://fakestoreapi.com/products/category/${categorie}`);
+        setIsLoading(false)
+
         setProducts(res.data);
     }
 
@@ -26,7 +30,7 @@ const ProductState = (props)=>{
     }
 
     return(
-        <ProductContext.Provider value={{getAllProducts, products, getProductsByCategory, getProduct, product}}>
+        <ProductContext.Provider value={{getAllProducts, products, setProducts,      getProductsByCategory, getProduct, product, setProduct, isLoading, setIsLoading}}>
             {
                 props.children
             }

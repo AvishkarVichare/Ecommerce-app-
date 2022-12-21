@@ -8,10 +8,12 @@ const ProductsPage = () => {
   const location = useLocation();
   const [category, setCategory] = useState("/");
   const productContext = useContext(ProductContext);
-  const { getAllProducts, products, getProductsByCategory } = productContext;
+  const { getAllProducts, products, setProducts, getProductsByCategory, isLoading, setIsLoading } = productContext;
 
 
   useEffect(() => {
+    setProducts([]);
+    setIsLoading(true)
     // console.log(location)
 
     if (location.pathname.includes("electronics")){
@@ -35,6 +37,9 @@ const ProductsPage = () => {
       setCategory("Home/All Products");
     }
 
+   
+
+      
   }, [location.pathname])
 
   return (
@@ -66,7 +71,7 @@ const ProductsPage = () => {
 
 
         {/* products list wi be diplayed below */}
-        <ProductsDiplay products={products} />
+        <ProductsDiplay isLoading={isLoading} products={products} />
       </div>
     </section>
   )
