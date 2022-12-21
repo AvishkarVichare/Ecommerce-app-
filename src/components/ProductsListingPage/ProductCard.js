@@ -1,11 +1,11 @@
 import React from 'react'
-import AddCartLogo from '../../assets/add_cart.svg';
+import AddCartLogo from '../../assets/add_cart.png';
 import {useNavigate} from 'react-router-dom';
 
-const ProductCard = ({title, price, description, img}) => {
+const ProductCard = ({id, title, price, description, img}) => {
     const navigate = useNavigate()
     const handleClickOnCard = ()=>{
-        navigate(`/p/${title}`)
+        navigate(`/p/${id}`)
     }
   return (
     <div  className=' w-[360px] h-[450px] p-4 rounded-[30px] bg-gradient-to-b from-[#fffaf6] to-[#f5ae91]  relative z-10 group hover:shadow-2xl ease-in duration-300'>

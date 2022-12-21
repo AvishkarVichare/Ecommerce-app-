@@ -20,7 +20,7 @@ const App = () => {
         <Route exact path="/categories/jewelery" element={<ProductsPage  />} />
         <Route exact path="/categories/men's clothing" element={<ProductsPage  />} />
         <Route exact path="/categories/women's clothing" element={<ProductsPage  />} />
-        <Route exact path="/p/:productname" element={<ProductMain />} />
+        <Route exact path="/p/:productid" element={<ProductMain />} />
 
       </Routes>
       

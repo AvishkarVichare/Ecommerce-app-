@@ -11,7 +11,7 @@ const ProductsDiplay = ({products}) => {
         {
           products?.map(product=>{
             return(
-              <ProductCard title={product.title} price={product.price} description={product.description} img={product.image}  />
+              <ProductCard key={product.id} id={product.id} title={product.title} price={product.price} description={product.description} img={product.image}  />
             )
           })
         }

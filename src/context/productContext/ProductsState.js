@@ -5,6 +5,7 @@ import { useState } from "react";
 const ProductState = (props)=>{
 
     const [products, setProducts] = useState([]);
+    const [product, setProduct] = useState({});
 
     const getAllProducts = async()=>{
         const res = await axios.get('https://fakestoreapi.com/products');
@@ -17,8 +18,15 @@ const ProductState = (props)=>{
         setProducts(res.data);
     }
 
+    const getProduct = async(productId)=>{
+        const res = await axios.get(`https://fakestoreapi.com/products/${productId}`);
+        // console.log(res.data);
+        setProduct(res.data)
+
+    }
+
     return(
-        <ProductContext.Provider value={{getAllProducts, products, getProductsByCategory}}>
+        <ProductContext.Provider value={{getAllProducts, products, getProductsByCategory, getProduct, product}}>
             {
                 props.children
             }
