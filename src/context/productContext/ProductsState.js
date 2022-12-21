@@ -12,8 +12,8 @@ const ProductState = (props)=>{
         setProducts(res.data);
     }
 
-    const getProductsByCategory = async()=>{
-        const res = await axios.get('https://fakestoreapi.com/products/category/jewelery');
+    const getProductsByCategory = async(categorie)=>{
+        const res = await axios.get(`https://fakestoreapi.com/products/category/${categorie}`);
         setProducts(res.data);
     }
 
