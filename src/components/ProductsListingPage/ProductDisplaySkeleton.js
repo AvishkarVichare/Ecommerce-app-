@@ -1,16 +1,20 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import CartContext from '../../context/cartContext/CartContext';
 
 const ProductDisplaySkeleton = () => {
+    const cartContext = useContext(CartContext);
+  const {cartItems, setCartItems} = cartContext;
+//   console.log(cartItems)
     return (
         <div className=' z-1 w-[90%] mx-auto relative mt-[30px] '>
             {/* cards */}
             <div className='flex justify-center flex-wrap gap-[55px] pb-12'>
                 {
-                    [1, 2, 4, 5, 6].map(e => { 
+                    [0, 1, 2, 4, 5, 6].map(e => { 
                         return(
-                            <div key={e}  className=' w-[360px] h-[450px] p-4 rounded-[30px] bg-gradient-to-b from-[#fffaf6] to-[#f5ae91] opacity-[.5] relative z-10 group hover:shadow-2xl ease-in duration-300'>
+                            <div key={e}  className=' w-[360px] h-[380px] p-4 rounded-[30px] bg-gradient-to-b from-[#fffaf6] to-[#f5ae91] opacity-[.5] relative z-10 '>
 
-                            <button className='absolute right-5 top-5 z-12 p-2 bg-text_main_color rounded-xl'>
+                            <button className='absolute right-5 opacity-[.5] top-5 z-12 p-2 bg-text_main_color rounded-xl'>
                             
                             </button>
                     

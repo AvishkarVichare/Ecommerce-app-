@@ -1,10 +1,18 @@
-import React from 'react';
+import React,{useContext, useEffect} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import CartLogo from '../assets/cart.png';
+import CartContext from '../context/cartContext/CartContext';
 
 const Navbar = () => {
 
+  const cartContext = useContext(CartContext);
+  const {cartItems, setCartItems} = cartContext;
+  
+
+  
+
   const navigate = useNavigate();
+
   return (
     <header className="text-text_main_color font-extrabold text-[20px] body-font bg-bg_main_color">
       <div className="container mx-auto flex flex-wrap p-3 px-5 flex-col md:flex-row items-center ">
@@ -35,9 +43,11 @@ const Navbar = () => {
         </nav>
         
         {/* cart  */}
-        <div className='flex flex-col justify-center items-center'>
+        <div onClick={()=>navigate('/u/cart')} className='flex flex-col justify-center items-center cursor-pointer'>
           <h4>
-            3
+            {
+              cartItems?.length===0?"0":cartItems.length
+            }
           </h4>
           <img src={CartLogo} alt="" />
         </div>

@@ -1,19 +1,36 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useLocation, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import CartContext from '../../context/cartContext/CartContext';
 import ProductContext from '../../context/productContext/ProductContext'
 
 const ProductMain = () => {
 
   const productContext = useContext(ProductContext);
-  const {getProduct, product, setProduct} = productContext;
+  const cartContext = useContext(CartContext);
+  const { cartItems, setCartItems } = cartContext;
+  const { getProduct, product, setProduct } = productContext;
   const params = useParams();
+  const navigate = useNavigate();
 
-  useEffect(()=>{
+  useEffect(() => {
     setProduct({})
     getProduct(params.productid)
     // console.log(params)
-  },[])
-  console.log(product)
+  }, [])
+  // console.log(product)
+
+  const handleBuyNow = () => {
+    const oldData = [...cartItems];
+    oldData.push(product);
+    setCartItems(oldData);
+    navigate('/u/cart');
+  }
+
+  const handleAddToCart = () => {
+    const oldData = [...cartItems];
+    oldData.push(product);
+    setCartItems(oldData);
+  }
 
   return (
     <section className='bg-bg_main_color h-[100vh] relative '>
@@ -60,27 +77,27 @@ const ProductMain = () => {
 
           {/* image and price */}
           <div className='w-[50%] '>
-              <img className='h-[400px] mx-auto rounded-xl mt-6 mb-3' src={product.image} alt="" />
-              <h4 className='font-bold text-product_title_color text-[1.8rem] text-center'>
-                Rs.{product.price}/-
-              </h4>
+            <img className='h-[400px] mx-auto rounded-xl mt-6 mb-3' src={product.image} alt="" />
+            <h4 className='font-bold text-product_title_color text-[1.8rem] text-center'>
+              Rs.{product.price}/-
+            </h4>
           </div>
 
           {/* add and price */}
           <div className='w-[20%] flex flex-col items-center gap-3'>
-              
-          <button className='text-[1.1rem] text-[#fcc30c] bg-[#000] py-2 px-5 rounded-2xl'>
-                Buy Now
-              </button>
 
-              <h4>
-                Or
-              </h4>
+            <button onClick={handleBuyNow} className='text-[1.1rem] text-[#fcc30c] bg-[#000] py-2 px-5 rounded-2xl'>
+              Buy Now
+            </button>
 
-              <button className='text-[1.1rem] text-[#fcc30c] bg-[#000] py-2 px-5 rounded-2xl'>
-                Add To Cart
-              </button>
-            
+            <h4>
+              Or
+            </h4>
+
+            <button onClick={handleAddToCart} className='text-[1.1rem] text-[#fcc30c] bg-[#000] py-2 px-5 rounded-2xl'>
+              Add To Cart
+            </button>
+
           </div>
 
         </div>
