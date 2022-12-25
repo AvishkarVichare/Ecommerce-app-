@@ -2,13 +2,14 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import CartContext from '../../context/cartContext/CartContext';
 import ProductContext from '../../context/productContext/ProductContext'
+import ProductMainSkeleton from './ProductMainSkeleton';
 
 const ProductMain = () => {
 
   const productContext = useContext(ProductContext);
   const cartContext = useContext(CartContext);
   const { cartItems, setCartItems } = cartContext;
-  const { getProduct, product, setProduct } = productContext;
+  const { getProduct, product, setProduct, setIsLoading, isLoading } = productContext;
   const params = useParams();
   const navigate = useNavigate();
 
@@ -28,6 +29,7 @@ const ProductMain = () => {
   }
 
   useEffect(() => {
+    setIsLoading(true);
     setProduct({})
     getProduct(params.productid)
     // console.log(params)
@@ -62,7 +64,9 @@ const ProductMain = () => {
 
         </div>
 
-        <div className='bg-gradient-to-b from-[#fff0cf] to-[#f6c798] w-[80%] h-[500px]  z-10 relative top-[100px] mx-auto rounded-[60px] p-6 flex justify-center items-center gap-3'>
+      {
+        !isLoading?(
+          <div className='bg-gradient-to-b from-[#fff0cf] to-[#f6c798] w-[80%] h-[500px]  z-10 relative top-[100px] mx-auto rounded-[60px] p-6 flex justify-center items-center gap-3'>
 
           {/* title and description */}
           <div className='w-[30%] '>
@@ -107,6 +111,11 @@ const ProductMain = () => {
           </div>
 
         </div>
+        ):(
+          <ProductMainSkeleton/>
+        )
+      }
+       
 
       </div>
     </section>

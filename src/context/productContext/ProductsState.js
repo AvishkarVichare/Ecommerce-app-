@@ -24,6 +24,7 @@ const ProductState = (props)=>{
 
     const getProduct = async(productId)=>{
         const res = await axios.get(`https://fakestoreapi.com/products/${productId}`);
+        setIsLoading(false)
         // console.log(res.data);
         setProduct(res.data)
 

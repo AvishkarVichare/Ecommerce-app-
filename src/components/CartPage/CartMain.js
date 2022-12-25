@@ -25,7 +25,7 @@ const CartMain = () => {
 
     <section>
 
-      <div className='flex justify-center bg-bg_main_color h-[100vh] py-20 gap-5' >
+      <div className='flex justify-center bg-bg_main_color  py-20 gap-5' >
 
         <div className='bg-hero_bg_color  rounded-2xl h-[400px]  w-[350px] order-2 p-3 flex flex-col items-center justify-center'>
 
