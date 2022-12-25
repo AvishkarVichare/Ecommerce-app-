@@ -4,19 +4,10 @@ import CartContext from "./CartContext"
 const CartState = (props)=>{
 
     const [cartItems, setCartItems] = useState([]);
-
-    useEffect(()=>{
-        const stored = JSON.parse(localStorage.getItem('cart'));
-        if(stored)
-            setCartItems(stored);
-    }, [])
-
-    useEffect(()=>{
-        localStorage.setItem('cart', JSON.stringify(cartItems));
-    },[cartItems])
-
+    const [subTotal, setSubTotal] = useState(0);
+  
     return(
-        <CartContext.Provider value={{cartItems, setCartItems}}>
+        <CartContext.Provider value={{cartItems, setCartItems, subTotal, setSubTotal}}>
             {
                 props.children
             }

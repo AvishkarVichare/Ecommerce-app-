@@ -12,12 +12,7 @@ const ProductMain = () => {
   const params = useParams();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setProduct({})
-    getProduct(params.productid)
-    // console.log(params)
-  }, [])
-  // console.log(product)
+  console.log(cartItems)
 
   const handleBuyNow = () => {
     const oldData = [...cartItems];
@@ -31,6 +26,17 @@ const ProductMain = () => {
     oldData.push(product);
     setCartItems(oldData);
   }
+
+  useEffect(() => {
+    setProduct({})
+    getProduct(params.productid)
+    // console.log(params)
+  }, [])
+  // console.log(product)
+
+  useEffect(()=>{
+    localStorage.setItem('cart', JSON.stringify(cartItems))
+  },[cartItems])
 
   return (
     <section className='bg-bg_main_color h-[100vh] relative '>

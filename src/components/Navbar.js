@@ -9,7 +9,13 @@ const Navbar = () => {
   const {cartItems, setCartItems} = cartContext;
   
 
-  
+  useEffect(()=>{
+    const data = JSON.parse(localStorage.getItem('cart'));
+    if(data){
+
+      setCartItems(data);
+    }
+  },[])
 
   const navigate = useNavigate();
 
